@@ -187,3 +187,47 @@ function renderBook() {
     }
 }
 
+function templateComments(comments) {
+    if (comments.length === 0) {
+        return `<li>Noch keine Kommentare vorhanden.</li>`;
+    }
+
+    let html = "";
+    for (let i = 0; i < comments.length; i++) {
+        html += `<li><strong>${comments[i].name}:</strong> ${comments[i].comment}</li>`;
+    }
+    return html;
+}
+
+function templateBook(index) {
+    const book = books[index];
+
+    return `
+        <div class="books">
+            <div class="book_title"><h2>${book.name}</h2></div>
+            <div class="book_image"></div>
+            <div>
+                <div class="book_price">${book.price.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}</div>
+                <div class="book_likes">${book.likes} <img src="${book.liked ? 'heart-filled.png' : 'heart-empty.jpeg'}" alt="Like"></div>
+            </div>
+            <div class="book_description">
+                <ul>
+                    <li><strong>Autor:</strong> ${book.author}</li>
+                    <li><strong>Erscheinungsjahr:</strong> ${book.publishedYear}</li>
+                    <li><strong>Genre:</strong> ${book.genre}</li>
+                </ul>
+            </div>
+            <div class="book_comment">
+                <h3>Kommentare:</h3>
+                <ul>
+                    ${templateComments(book.comments)}
+                </ul>
+                <div class="comment_input">
+                    <input type="text" placeholder="Kommentar schreiben...">
+                    <button>Senden</button>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
