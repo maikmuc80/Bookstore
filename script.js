@@ -180,11 +180,13 @@ function init() {
 
 function renderBook() {
     let content = document.getElementById("bookstore");
-    content.innerHTML = "";
+
+    let htmlCollect = "";
 
     for (let index = 0; index < books.length; index++) {
-        content.innerHTML += templateBook(index);
+        htmlCollect += templateBook(index);
     }
+    content.innerHTML = htmlCollect;
 }
 
 function templateComments(comments) {
@@ -202,11 +204,11 @@ function templateComments(comments) {
 function templateBook(index) {
     const book = books[index];
 
-    return `
+    return /*html*/ `
         <div class="books">
             <div class="book_title"><h2>${book.name}</h2></div>
             <div class="book_image"></div>
-            <div>
+            <div class="book_info">
                 <div class="book_price">${book.price.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}</div>
                 <div class="book_likes">${book.likes} <img src="${book.liked ? 'heart-filled.png' : 'heart-empty.jpeg'}" alt="Like"></div>
             </div>
@@ -223,11 +225,40 @@ function templateBook(index) {
                     ${templateComments(book.comments)}
                 </ul>
                 <div class="comment_input">
-                    <input type="text" placeholder="Kommentar schreiben...">
-                    <button>Senden</button>
+                    <input type="text" id="inputComment-${index}" placeholder="Kommentar schreiben...">
+                    <button onclick="addComment(${index})">Abschicken</button>
                 </div>
             </div>
         </div>
     `;
 }
+
+function addComment(bookIndex) {
+    // 1. Das richtige Input-Feld anhand der ID greifen
+    let inputField = document.getElementById(`inputComment-${bookIndex}`);
+    let commentText = inputField.value;
+
+    // 2. Sicherheitscheck: Wenn das Feld leer ist, machen wir nichts
+    if (commentText.trim() === "") {
+        alert("Bitte schreibe erst einen Kommentar!");
+        return; 
+    }
+
+    // 3. Ein neues Kommentar-Objekt erstellen
+    let newComment = {
+        "name": "Du (Gast)", // Hier könnte später ein echter Username stehen
+        "comment": commentText
+    };
+
+    // 4. Das Objekt in das 'comments'-Array des gewählten Buches schieben
+    books[bookIndex].comments.push(newComment);
+
+    // 5. Das Input-Feld wieder leeren
+    inputField.value = "";
+
+    // 6. Die Ansicht neu laden (deine Render-Funktion aufrufen)
+    renderBooks(); 
+}
+
+
 
