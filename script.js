@@ -210,7 +210,11 @@ function templateBook(index) {
             <div class="book_image"></div>
             <div class="book_info">
                 <div class="book_price">${book.price.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}</div>
-                <div class="book_likes">${book.likes} <img src="${book.liked ? 'heart-filled.png' : 'heart-empty.jpeg'}" alt="Like"></div>
+                <div class="book_likes">${book.likes} 
+                  <button onclick="toggleLike(${index})">
+                    <img src="${book.liked ? './assets/icon/heart-filled.png' : './assets/icon/heart-empty.jpeg'}" alt="Like">
+                  </button>
+                </div>
             </div>
             <div class="book_description">
                 <ul>
@@ -231,6 +235,21 @@ function templateBook(index) {
             </div>
         </div>
     `;
+}
+
+
+
+function toggleLike(bookIndex) {
+    let book = books[bookIndex];
+
+    if (book.liked) {
+        book.liked = false;
+        book.likes--;
+    } else {
+        book.liked = true;
+        book.likes++;
+    }
+    renderBook();
 }
 
 function addComment(bookIndex) {
@@ -257,7 +276,7 @@ function addComment(bookIndex) {
     inputField.value = "";
 
     // 6. Die Ansicht neu laden (deine Render-Funktion aufrufen)
-    renderBooks(); 
+    renderBook(); 
 }
 
 
