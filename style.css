@@ -10,7 +10,7 @@ body{
     justify-content: center;
     align-items: center;
     font-size: 16px;
-    max-width: 1440px;
+    margin: 64px max(calc(50% -720px), 64 px);
 }
 
 h1{
@@ -100,6 +100,7 @@ header{
 
 button{
     border: none;
+    cursor:pointer;
 }
 
 img{
