@@ -32,7 +32,6 @@ let books = [
       "image": "https://images.unsplash.com/photo-1499346030926-9a72daac6c63?w=300&h=400&fit=crop", // Himmel-Bild
       "comments": [ /* ... */ ]
     }
-    // ... füge das Prinzip einfach bei den anderen Büchern hinzu!
 ];
 
 function init() {
@@ -69,7 +68,7 @@ function templateBook(index) {
         <div class="books">
             <div class="book_title"><h2>${book.name}</h2></div>
             <div class="book_image"> 
-              <img src="${book.image}"
+              <img src="${book.image}" alt="${book.name}">
             </div>
             <div class="book_info">
                 <div class="book_price">${book.price.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}</div>
@@ -116,29 +115,23 @@ function toggleLike(bookIndex) {
 }
 
 function addComment(bookIndex) {
-    // 1. Das richtige Input-Feld anhand der ID greifen
     let inputField = document.getElementById(`inputComment-${bookIndex}`);
     let commentText = inputField.value;
 
-    // 2. Sicherheitscheck: Wenn das Feld leer ist, machen wir nichts
     if (commentText.trim() === "") {
         alert("Bitte schreibe erst einen Kommentar!");
         return; 
     }
 
-    // 3. Ein neues Kommentar-Objekt erstellen
     let newComment = {
-        "name": "Du (Gast)", // Hier könnte später ein echter Username stehen
+        "name": "Du (Gast)",
         "comment": commentText
     };
 
-    // 4. Das Objekt in das 'comments'-Array des gewählten Buches schieben
     books[bookIndex].comments.push(newComment);
 
-    // 5. Das Input-Feld wieder leeren
     inputField.value = "";
 
-    // 6. Die Ansicht neu laden (deine Render-Funktion aufrufen)
     renderBook(); 
 }
 
