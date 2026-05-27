@@ -57,8 +57,8 @@ let books = [
 ];
 
 function init() {
-    loadFromStorage()
-    renderBook()
+    loadFromStorage();
+    renderBook();
 }
 
 function renderBook() {
@@ -132,7 +132,7 @@ function toggleLike(bookIndex) {
         book.liked = true;
         book.likes++;
     }
-    addToStorage()
+    addToStorage();
     renderBook();
 }
 
@@ -154,7 +154,7 @@ function addComment(bookIndex) {
 
     inputField.value = "";
 
-    addToStorage()
+    addToStorage();
     renderBook(); 
 }
 
