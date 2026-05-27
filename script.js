@@ -97,7 +97,7 @@ function templateBook(index) {
                 <div class="book_price">${book.price.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}</div>
                 <div class="book_likes">${book.likes} 
                   <button onclick="toggleLike(${index})">
-                    <img src="${book.liked ? './assets/icon/heart-filled.png' : './assets/icon/heart-empty.jpeg'}" alt="Like">
+                    <img src="${book.liked ? './assets/icon/heart-filled.png' : './assets/icon/heart-empty.jpeg'}" alt="Like" aria-label="${book.liked ? 'Like zurücknehmen' : 'Like vergeben'}" aria-pressed="${book.liked}">
                   </button>
                 </div>
             </div>
@@ -114,7 +114,7 @@ function templateBook(index) {
                     ${templateComments(book.comments)}
                 </ul>
                 <div class="comment_input">
-                    <input type="text" id="inputComment-${index}" placeholder="Kommentar schreiben...">
+                    <input type="text" id="inputComment-${index}" placeholder="Kommentar schreiben..." aria-label="Kommentar schreiben">
                     <button onclick="addComment(${index})">Abschicken</button>
                 </div>
             </div>
