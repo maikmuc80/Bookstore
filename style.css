@@ -129,3 +129,16 @@ img{
     color: white;
     background-color: #333;
 }
+
+.book_title {
+    min-height: 4.5em;
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.book_title h2 {
+    font-size: 1.5em;
+    color: #333;
+    line-height: 1.2;
+}
