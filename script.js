@@ -88,7 +88,7 @@ function templateBook(index) {
     const book = books[index];
 
     return /*html*/ `
-        <div class="books">
+        <article class="books">
             <div class="book_title"><h2>${book.name}</h2></div>
             <div class="book_image"> 
               <img src="${book.image}" alt="${book.name}">
@@ -118,7 +118,7 @@ function templateBook(index) {
                     <button onclick="addComment(${index})">Abschicken</button>
                 </div>
             </div>
-        </div>
+        </article>
     `;
 }
 
