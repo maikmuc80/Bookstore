@@ -120,3 +120,12 @@ img{
     height: 200px;
     object-fit: cover; 
 }
+.button_send_comment{
+    border: solid 1px;
+    border-radius: 20px;
+}
+
+.button_send_comment:hover{
+    color: white;
+    background-color: #333;
+}

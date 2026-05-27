@@ -115,7 +115,7 @@ function templateBook(index) {
                 </ul>
                 <div class="comment_input">
                     <input type="text" id="inputComment-${index}" placeholder="Kommentar schreiben..." aria-label="Kommentar schreiben">
-                    <button onclick="addComment(${index})">Abschicken</button>
+                    <button class="button_send_comment" onclick="addComment(${index})">Abschicken</button>
                 </div>
             </div>
         </article>
