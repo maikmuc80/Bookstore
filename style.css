@@ -54,8 +54,8 @@ header{
     align-items: center;
     border: solid 1px;
     gap: 15px;
-    width: 300px;
-    margin: 20px;
+    max-width: 300px;
+    width: 100%;
     border-radius: 10px;
     background-color: #f0f0f0;
     padding: 20px;  
