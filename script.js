@@ -57,6 +57,7 @@ let books = [
 ];
 
 function init() {
+    loadFromStorage()
     renderBook()
 }
 
@@ -121,8 +122,6 @@ function templateBook(index) {
     `;
 }
 
-
-
 function toggleLike(bookIndex) {
     let book = books[bookIndex];
 
@@ -133,6 +132,7 @@ function toggleLike(bookIndex) {
         book.liked = true;
         book.likes++;
     }
+    addToStorage()
     renderBook();
 }
 
@@ -154,8 +154,21 @@ function addComment(bookIndex) {
 
     inputField.value = "";
 
+    addToStorage()
     renderBook(); 
 }
 
+function addToStorage() {
+    localStorage.setItem("myBookstoreData", JSON.stringify(books));
+}
 
+function loadFromStorage() {
+    let storedBooks = localStorage.getItem("myBookstoreData");
 
+    if (storedBooks === null) {
+        console.log("No Bookstore array found in storage");
+        return;
+    }
+
+    books = JSON.parse(storedBooks);
+}
